@@ -1,0 +1,278 @@
+{
+  "info": {
+    "name": "PostgreSQL Migration API",
+    "description": "API collection for PostgreSQL database migration operations using Liquibase",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "health"
+          ]
+        },
+        "description": "Check if the migration service is healthy and running"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Migration Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/status",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "status"
+          ]
+        },
+        "description": "Get current migration status including pending changesets"
+      },
+      "response": []
+    },
+    {
+      "name": "Validate Changelog",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/validate",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "validate"
+          ]
+        },
+        "description": "Validate the Liquibase changelog syntax and structure"
+      },
+      "response": []
+    },
+    {
+      "name": "Run Migration - Dev",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/run?contexts=dev",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "run"
+          ],
+          "query": [
+            {
+              "key": "contexts",
+              "value": "dev",
+              "description": "Environment context for development"
+            }
+          ]
+        },
+        "description": "Run database migration for development environment"
+      },
+      "response": []
+    },
+    {
+      "name": "Run Migration - UAT",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/run?contexts=uat",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "run"
+          ],
+          "query": [
+            {
+              "key": "contexts",
+              "value": "uat",
+              "description": "Environment context for UAT"
+            }
+          ]
+        },
+        "description": "Run database migration for UAT environment"
+      },
+      "response": []
+    },
+    {
+      "name": "Run Migration - Production",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/run?contexts=production",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "run"
+          ],
+          "query": [
+            {
+              "key": "contexts",
+              "value": "production",
+              "description": "Environment context for production"
+            }
+          ]
+        },
+        "description": "Run database migration for production environment"
+      },
+      "response": []
+    },
+    {
+      "name": "Run Migration - All Contexts",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/run",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "run"
+          ]
+        },
+        "description": "Run database migration without context filtering (all changesets)"
+      },
+      "response": []
+    },
+    {
+      "name": "Rollback Migration - 1 Changeset",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/rollback?count=1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "rollback"
+          ],
+          "query": [
+            {
+              "key": "count",
+              "value": "1",
+              "description": "Number of changesets to rollback"
+            }
+          ]
+        },
+        "description": "Rollback the last changeset"
+      },
+      "response": []
+    },
+    {
+      "name": "Rollback Migration - 3 Changesets",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/migration/rollback?count=3",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "migration",
+            "rollback"
+          ],
+          "query": [
+            {
+              "key": "count",
+              "value": "3",
+              "description": "Number of changesets to rollback"
+            }
+          ]
+        },
+        "description": "Rollback the last 3 changesets"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Set timestamp for each request",
+          "pm.globals.set('timestamp', new Date().toISOString());"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Common test assertions",
+          "pm.test('Response time is less than 30 seconds', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+          "});",
+          "",
+          "pm.test('Response has timestamp', function () {",
+          "    const responseJson = pm.response.json();",
+          "    pm.expect(responseJson).to.have.property('timestamp');",
+          "});",
+          "",
+          "// Log response for debugging",
+          "console.log('Response:', pm.response.json());"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "description": "Base URL for the migration service"
+    },
+    {
+      "key": "timestamp",
+      "value": "",
+      "description": "Current timestamp for requests"
+    }
+  ]
+}

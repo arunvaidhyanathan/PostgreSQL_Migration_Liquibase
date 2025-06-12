@@ -1,0 +1,91 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: postgresql-migration-service
+  
+  profiles:
+    active: dev
+  
+  datasource:
+    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
+    username: wf_owner
+    password: npg_7hrdeDKf6WyC
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: false # Disable auto-run to control via API
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,liquibase
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+logging:
+  level:
+    liquibase: INFO
+    com.company.migration: DEBUG
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/migration.log
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  
+  datasource:
+    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
+    username: wf_owner
+    password: npg_7hrdeDKf6WyC
+
+---
+spring:
+  config:
+    activate:
+      on-profile: uat
+  
+  datasource:
+    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
+    username: wf_owner
+    password: npg_7hrdeDKf6WyC
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  
+  datasource:
+    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
+    username: wf_owner
+    password: npg_7hrdeDKf6WyC
+  
+  liquibase:
+    contexts: production
