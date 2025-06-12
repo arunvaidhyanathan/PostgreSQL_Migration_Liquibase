@@ -9,9 +9,9 @@ spring:
     active: dev
   
   datasource:
-    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
-    username: wf_owner
-    password: npg_7hrdeDKf6WyC
+    url:
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
   
   jpa:
@@ -61,9 +61,9 @@ spring:
       on-profile: dev
   
   datasource:
-    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
-    username: wf_owner
-    password: npg_7hrdeDKf6WyC
+    url: 
+    username: 
+    password: 
 
 ---
 spring:
@@ -72,9 +72,9 @@ spring:
       on-profile: uat
   
   datasource:
-    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
-    username: wf_owner
-    password: npg_7hrdeDKf6WyC
+    url: 
+    username: 
+    password: 
 
 ---
 spring:
@@ -83,9 +83,9 @@ spring:
       on-profile: prod
   
   datasource:
-    url: jdbc:postgresql://ep-wispy-haze-a5xy9c41-pooler.us-east-2.aws.neon.tech/workflow?user=wf_owner&password=npg_7hrdeDKf6WyC&sslmode=require&currentSchema=cms_flowable_workflow
-    username: wf_owner
-    password: npg_7hrdeDKf6WyC
+    url: 
+    username: 
+    password: 
   
   liquibase:
     contexts: production
