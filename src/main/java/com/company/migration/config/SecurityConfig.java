@@ -24,7 +24,9 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .csrf(csrf -> csrf.disable())
-            .headers(headers -> headers.frameOptions().deny());
+            .headers(headers -> headers
+                .frameOptions(frameOptions -> frameOptions.deny())
+            );
         
         return http.build();
     }

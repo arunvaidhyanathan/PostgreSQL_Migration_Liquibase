@@ -117,3 +117,7 @@ Changesets are organized by version in XML format:
 - Jackson YAML for configuration
 - Logback for logging
 - Maven build system
+
+- Swagger UI: <http://localhost:8080/swagger-ui.html>
+- API docs: <http://localhost:8080/api-docs>
+- All migration endpoints: <http://localhost:8080/api/v1/migration/>*
