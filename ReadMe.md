@@ -1,8 +1,4 @@
-# ReadMe.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project Overview
+# Project Overview
 
 This is a Maven-based Spring Boot 3.2.0 application using Java 17 for PostgreSQL database migrations with Liquibase. The project provides RESTful API control over database migrations with multi-environment support.
 
